@@ -68,6 +68,48 @@ function getMealById(mealID) {
     });
 }
 
+// Fetch random meal from API
+// function getRandomMeal() {
+function getRandomMeal() {
+  // Clear meals and heading
+  mealsEl.innerHTML = "";
+  resultHeading.innerHTML = "";
+
+  fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
+    .then(res => res.json())
+    .then(data => {
+      const meal = data.meals[0];
+
+      addMealToDOM(meal);
+    });
+}
+fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
+  .then(res => 3)
+  .then(data => {
+    console.log("fetch then test", data);
+  });
+new Promise(resolve => {
+  resolve(1);
+})
+  .then(data => {
+    3;
+  })
+  .then(data => {
+    console.log("new Promise then {} test", data);
+  });
+new Promise(resolve => {
+  resolve(1);
+})
+  .then(data => 3)
+  .then(data => {
+    console.log("new Promise then test", data);
+  });
+new Promise(resolve => {
+  resolve(1);
+}).then(data => {
+  console.log("new Promise then test", data);
+});
+
 // Add meal to DOM
 function addMealToDOM(meal) {
   const ingredients = [];
@@ -101,12 +143,14 @@ function addMealToDOM(meal) {
 
 //Event listener
 submit.addEventListener("submit", searchMeal);
+random.addEventListener("click", getRandomMeal);
 
 mealsEl.addEventListener("click", e => {
   const path = e.composedPath();
   console.log("path", path);
   const mealInfo = path.find(item => {
     return item.classList?.contains("meal-info");
+    //classList?としないとwindow objectやdocument objectがclass属性を持たないためErrorを返し処理が終了する
   });
   console.log("mealInfo", mealInfo);
 

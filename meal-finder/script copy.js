@@ -61,6 +61,7 @@ function getMealById(mealID) {
 }
 
 // Fetch random meal from API
+// function getRandomMeal() {
 function getRandomMeal() {
   // Clear meals and heading
   mealsEl.innerHTML = "";
